@@ -21,7 +21,7 @@ const Card = () => {
                 },
             };
 
-            const response = await axios.post('/user/getproduct', {}, config);
+            const response = await axios.post('https://checkbackend-zaxv.onrender.com/user/getproduct', {}, config);
             console.log('product', response.data); // Access response.data to get the actual data
             setProList(response.data.getall); // Update state with the received data
         } catch (error) {

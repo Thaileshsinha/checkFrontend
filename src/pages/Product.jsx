@@ -27,7 +27,7 @@ const Product = () => {
             };
 
             const response = await axios.post(
-                "/user/getoneproduct",
+                "https://checkbackend-zaxv.onrender.com/user/getoneproduct",
                 { productId },
                 config
             );

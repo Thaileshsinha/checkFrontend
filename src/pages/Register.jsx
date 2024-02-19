@@ -21,7 +21,7 @@ const Register = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const check = await axios.post("/user/createuser", { email: detail.email, mobile: detail.mobile, password: detail.password, name: detail.name }).then((res) => {
+        await axios.post("https://checkbackend-zaxv.onrender.com/user/createuser", { email: detail.email, mobile: detail.mobile, password: detail.password, name: detail.name }).then((res) => {
             // console.log("res", res.data.token)
             localStorage.setItem("token", res.data.token)
             setDetail({ email: "", password: "", mobile: "", name: "" });
