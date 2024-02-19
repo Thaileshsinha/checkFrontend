@@ -11,15 +11,16 @@ import { useNavigate } from "react-router-dom";
 
 // axios.defaults.baseURL = "https://checkbackend-zaxv.onrender.com";
 
-const tok = localStorage.getItem("token");
+
+
+const App = () => {
+  const tok = localStorage.getItem("token");
 const nav = useNavigate();
 useEffect(() => {
   if (tok === "0" || tok === null) {
     nav("/login");
   }
 }, []);
-
-const App = () => {
   return (
     <>
       <Navbar />
