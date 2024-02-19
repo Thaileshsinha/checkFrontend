@@ -9,10 +9,28 @@ const Product = () => {
     const { productId } = useParams();
     const [prodetils, setProdetils] = useState(null);
     const token = localStorage.getItem("token");
-    const navigate = useNavigate()
-    const handleHome = () => {
-        navigate("/thankyou")
-    }
+    const navigate = useNavigate();
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    const handleHome = async () => {
+        try {
+            await axios
+                .post(
+                    "https://checkbackend-zaxv.onrender.com/user/getoneproduct",
+                    { productId },
+                    config
+                )
+                .then((res) => {
+                    console.log(res.data);
+                    navigate("/thankyou");
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     useEffect(() => {
         getProduct();
@@ -20,12 +38,6 @@ const Product = () => {
 
     const getProduct = async () => {
         try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-
             const response = await axios.post(
                 "https://checkbackend-zaxv.onrender.com/user/getoneproduct",
                 { productId },
@@ -37,7 +49,7 @@ const Product = () => {
             console.log(error);
         }
     };
-
+    updatechekpro;
     return (
         <>
             <Box m="20px">
@@ -47,7 +59,7 @@ const Product = () => {
                             display: "flex",
                             justifyContent: "center",
                             justifyItems: "center",
-                            flexWrap: "wrap"
+                            flexWrap: "wrap",
                         }}
                     >
                         <Box
@@ -74,7 +86,9 @@ const Product = () => {
                             <Typography my="5px">{prodetils.title}</Typography>
                             <Typography my="5px">{prodetils.description}</Typography>
                             <Typography my="5px">price : {prodetils.price}/- Rs</Typography>
-                            <Button my="5px" variant="outlined" onClick={handleHome} >Check Out</Button>
+                            <Button my="5px" variant="outlined" onClick={handleHome}>
+                                Check Out
+                            </Button>
                         </Box>
                     </Box>
                 ) : (

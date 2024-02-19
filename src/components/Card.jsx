@@ -12,14 +12,14 @@ const Card = () => {
     useEffect(() => {
         getProduct();
     }, [token]);
-
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`, // Correct format for authorization header
+        },
+    };
     const getProduct = async () => {
         try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`, // Correct format for authorization header
-                },
-            };
+
 
             const response = await axios.post('https://checkbackend-zaxv.onrender.com/user/getproduct', {}, config);
             console.log('product', response.data); // Access response.data to get the actual data
@@ -28,8 +28,15 @@ const Card = () => {
             console.log(error);
         }
     };
-    const handleNavigate = (productId) => {
-        navigate(`product/${productId}`)
+    const handleNavigate = async (productId) => {
+        try {
+            await axios.post("https://checkbackend-zaxv.onrender.com/user/createchekpro", { productId }, config).then((res) => {
+
+                navigate(`product/${productId}`)
+            })
+        } catch (err) {
+            console.log(err)
+        }
     }
     return (
         <>
