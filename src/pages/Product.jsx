@@ -19,7 +19,7 @@ const Product = () => {
         try {
             await axios
                 .post(
-                    "https://checkbackend-zaxv.onrender.com/user/getoneproduct",
+                    "https://checkbackend-zaxv.onrender.com/user/updatechekpro",
                     { productId },
                     config
                 )
@@ -49,7 +49,6 @@ const Product = () => {
             console.log(error);
         }
     };
-    updatechekpro;
     return (
         <>
             <Box m="20px">
