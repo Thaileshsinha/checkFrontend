@@ -21,7 +21,7 @@ const Login = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const check = await axios.post("http://localhost:5000/user/loginuser", { email: detail.email, mobile: detail.mobile, password: detail.password }).then((res) => {
+        const check = await axios.post("/user/loginuser", { email: detail.email, mobile: detail.mobile, password: detail.password }).then((res) => {
             // console.log("res", res.data.token)
             localStorage.setItem("token", res.data.token)
             setDetail({ email: "", password: "", mobile: "" });

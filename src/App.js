@@ -6,7 +6,9 @@ import Card from "./components/Card";
 import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Thankyou from "./pages/Thankyou";
+import axios from "axios";
 
+axios.defaults = "https://checkbackend-zaxv.onrender.com";
 const App = () => {
   return (
     <>
